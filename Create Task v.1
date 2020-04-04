@@ -1,0 +1,253 @@
+import random
+#intro screen
+# status 0 is for pre game
+#status 1 is for currently in combat
+#status 2 is for when the player or enemy is dead(combat has ended)
+#status 4 is for when player defeats the Tutorial "Bot"
+#status 10 is for when player selects railgun
+#status 11 is for when player selects Arc Rifle
+#status 12 is for when player selects Gauss Rifle
+
+#Bugs
+    #Arc Rifle attack loop dont work
+    #Game crashes whem prompted for number and you type in a non number
+#Things to Test
+    #Rail Gun attack
+#Things to Do
+    #Implement 'not an answer loop'
+    #get Atom to work
+    #Start using methods
+    #Find a better song than Kalinka
+    #Finish Weapon testing part
+
+status = 0
+playerAttackselect = 0
+while status == 0:
+    print("______________________________________")
+    print("               Welcome                ")
+    print(" to my AP Computer Science Principles ")
+    print("             Create task              ")
+    print("         By: CertifiedDefault         ")
+    print("______________________________________")
+    status = input("         Type 3 to continue         ")
+if status == 3:
+    print("_____________________________________")
+    print("This game relies purely off numerical")
+    print(" commands and currently typing in a  ")
+    print("letter or any non numerical character")
+    print(" may(will) result in an error and the")
+    print("  program will crash. This error is  ")
+    print("      currently being resolved       ")
+    print("_____________________________________")
+    status = input("         Type 1 to continue        ")
+#Computer Attack Selection
+botAttackselect = random.randint(1,3)
+#Alive check
+enemHp = 700
+Hp = 700
+if enemHp > 0:
+    status = 1
+else:
+    status = 2
+if Hp > 0:
+    status = 1
+else:
+    status = 2
+attackNum = 0
+#Different selection of attacks
+attack1 = 1.6 + attackNum
+attack2 = 2.5 * attackNum % 3
+attack3 = 3.3 * attackNum
+while status == 1:
+    print("______________________________________")
+    print("     This is the tutorial section     ")
+    print(" You will have 3 wepons to choose from")
+    print("the objective is to beat the enemy bot")
+    print("              good luck               ")
+    print("______________________________________")
+    status = input("         Type 1 to continue         ")
+    while status == 1:
+        print('Bots turn')
+        if botAttackselect == 1:
+            attackNum = attackNum + 1
+            attack1 = 1.6 + attackNum ** 2
+            Hp = Hp - attack1
+            if Hp > 0:
+                status = 1
+            else:
+                status = 0
+            print(enemHp)
+            print(Hp)
+            print('Damage done: ')
+            print(attack1)
+            break;
+        elif botAttackselect == 2:
+            attackNum = attackNum + 1
+            attack2 = 2.5 * attackNum % 3
+            Hp = Hp - attack2
+            if Hp > 0:
+                status = 1
+            else:
+                status = 0
+            print(enemHp)
+            print(Hp)
+            print('Damage done: ')
+            print(attack2)
+            break;
+        elif botAttackselect == 3:
+            attackNum = attackNum + 1
+            attack3 = 3.3 * attackNum
+            Hp = Hp - attack3
+            if Hp > 0:
+                status = 1
+            else:
+                status = 0
+            print(enemHp)
+            print(Hp)
+            print('Damage done: ')
+            print(attack3)
+            break;
+    while status == 1:
+        while True:
+            print('Players Turn')
+            playerAttackselect = input('Type 1 for Attack 1, 2 for Attack 2, or 3 for attack3')
+            if playerAttackselect == 1:
+                attackNum = attackNum + 1
+                attack1 = 1.6 + attackNum ** 2
+                enemHp = enemHp - attack1
+                if enemHp > 0:
+                    status = 1
+                else:
+                    status = 4
+                print(enemHp)
+                print(Hp)
+                print('Damage done: ')
+                print(attack1)
+                break;
+            elif playerAttackselect == 2:
+                attackNum = attackNum + 1
+                attack2 = 2.5 * attackNum % 3
+                enemHp = enemHp - attack2
+                if enemHp > 0:
+                    status = 1
+                else:
+                    status = 4
+                print(enemHp)
+                print(Hp)
+                print('Damage done: ')
+                print(attack2)
+                break;
+            elif playerAttackselect == 3:
+                attackNum = attackNum + 1
+                attack3 = 3.3 * attackNum
+                enemHp = enemHp - attack3
+                if enemHp > 0:
+                    status = 1
+                else:
+                    status = 4
+                print(enemHp)
+                print(Hp)
+                print('Damage done: ')
+                print(attack3)
+                break;
+            else:
+                print('Players Turn')
+                playerAttackselect = input('Type 1 for Attack 1, 2 for Attack 2, or 3 for attack3')
+if status == 4:
+    print("______________________________________")
+    print("   Well done now select your weapon   ")
+    print(" You will have 3 wepons to choose from")
+    print("               Weapon 1               ")
+    print("               Rail Gun               ")
+    print("  Damage: 250         Hit Chance: 5%  ")
+    print("       Critical Hit Chance: 75%       ")
+    print("      Critical Hit Modifier: x2.5     ")
+    print("         Special Ability: None        ")
+    print("               Weapon 2               ")
+    print("              Arc Rifle               ")
+    print("  Damage: 45          Hit Chance: 50% ")
+    print("       Critical Hit Chance: 10%       ")
+    print("      Critical Hit Modifier: x1.25    ")
+    print(" Special Ability: On a successful hit ")
+    print("  the arc will come back and hit the  ")
+    print("      target again up to 4 times      ")
+    print("               Weapon 3               ")
+    print("             Gauss Rifle              ")
+    print(" Damage: 5            Hit Chance: 15% ")
+    print("       Critical Hit Chance: 2%        ")
+    print("      Critical Hit Modifier: x5       ")
+    print(" Special Ability: It fires 50 rounds  ")
+    print("______________________________________")
+    weaponSelect = input("Type in the number of your selected weapon")
+if weaponSelect == 1:
+    print("Now lets try out your new Rail gun")
+    enemHp = 700
+    Hp = 700
+    print("enemy HP:")
+    print(enemHp)
+    print("your HP:")
+    print(Hp)
+    status = 10
+    while status == 10:
+        userAction = input("To heal oneselve type '1' to Attack type '2'")
+        if userAction == 1:
+            Hp = Hp + 50
+            print(Hp)
+        elif userAction == 2:
+            hitProb = random.randint(0,100)
+            if hitProb < 6:
+                critProb = random.randint(0,100)
+                if critProb < 76:
+                    enemHp = enemHp - 625
+                else:
+                    enemHp = enemHp - 250
+            print("new enemy HP:")
+            print(enemHp)
+            print("your HP:")
+            print(Hp)
+            Hp = Hp - 25
+            break;
+elif weaponSelect == 2:
+    print("Now lets try out your new Arc Rifle")
+    enemHp = 700
+    Hp = 700
+    print("enemy HP:")
+    print(enemHp)
+    print("your HP:")
+    print(Hp)
+    status = 11
+    while status == 11:
+        userAction = input("To heal oneselve type '1' to Attack type '2'")
+        if userAction == 1:
+            Hp = Hp + 50
+            print(Hp)
+        elif userAction == 2:
+            hitProb = random.randint(0,100)
+            if hitProb < 51:
+                arcHit = random.randint(1,4)
+                critProb = random.randint(0,100)
+                if critProb < 11:
+                    critDamageArc = 56.25 * arcHit
+                    enemHp = enemHp - critDamageArc
+                    print("new enemy HP:")
+                    print(enemHp)
+                    print("your HP:")
+                    print(Hp)
+                    Hp = Hp - 25
+                else:
+                    damageArc = 45 * arcHit
+                    enemHp = enemHp - damageArc
+                    print("new enemy HP:")
+                    print(enemHp)
+                    print("your HP:")
+                    print(Hp)
+                    Hp = Hp - 25
+elif weaponSelect == 3:
+    print("Now lets try out your new Gauss Rifle")
+    enemHp = 700
+    Hp = 700
+    status = 12
+    print("enemy HP:")
+    print(enemHp)
+    print("your HP:")
+    print(Hp)
